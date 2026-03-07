@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float rSpeed;
     [SerializeField] private float jSpeed;
     [SerializeField] private float sensitivity = 0.1f;
-    [SerializeField] private Camera camera;
+    [SerializeField] private UnityEngine.Camera camera;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

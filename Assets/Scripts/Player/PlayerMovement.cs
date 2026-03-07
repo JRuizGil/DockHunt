@@ -77,8 +77,7 @@ public class PlayerMovement : MonoBehaviour
     public void Walk()
     {
         Vector3 move = (transform.forward * mMove.y + transform.right * mMove.x) * mSpeed * Time.fixedDeltaTime;
-        rb.MovePosition(rb.position + move);
-        
+        rb.MovePosition(rb.position + move);       
         
     }
     public void Rotate()

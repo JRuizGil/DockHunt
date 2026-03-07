@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5157524ffa9887c489c623fdad7df451, type: 3}
   m_Name: SeagullpoolScriptable
   m_EditorClassIdentifier: 
-  spawnInterval: 5
-  inTime: 2
-  stayTime: 100
-  outTime: 1
+  spawnInterval: 0.3
+  flightSpeed: 100
+  waitTime: 10

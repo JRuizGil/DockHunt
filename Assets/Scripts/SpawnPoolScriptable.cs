@@ -6,9 +6,7 @@ using Unity.VisualScripting;
 [System.Serializable]
 public class SeagullPoolScriptable : ScriptableObject
 {
-    public float spawnInterval;
-    public float inTime;
-    public float stayTime;
-    public float outTime;
-
+    public float spawnInterval = 0.5f;
+    public float flightSpeed = 10f;
+    public float waitTime = 100; 
 }

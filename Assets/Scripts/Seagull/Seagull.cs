@@ -1,17 +1,20 @@
-using UnityEngine;
-using UnityEngine.AI;
 using System.Collections;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UnityEngine;
+using UnityEngine.AI;
+using static Unity.VisualScripting.Member;
 public class Seagull : MonoBehaviour
 {
     public SeagullPoolScriptable config;
     private NavMeshAgent agent;
     private Vector3 spawnPoint;
     private bool isScared = false;
-
+    public AudioSource audioSource;
+    public AudioClip[] audioClips;
     private void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();        
+        agent = GetComponent<NavMeshAgent>();    
+        audioSource = GetComponent<AudioSource>();
         agent.enabled = false;
     }
     private void OnTriggerEnter(Collider other)
@@ -29,12 +32,12 @@ public class Seagull : MonoBehaviour
         NavMeshHit hit;
         
         //if navmesh hits in a point closer than 20 units, saves and sends the corutine to that position
-        if (NavMesh.SamplePosition(startPos, out hit, 100f, NavMesh.AllAreas))
+        if (NavMesh.SamplePosition(startPos, out hit, 500f, NavMesh.AllAreas))
         {
             Vector3 targetGroundPos = hit.position;
             //Debug.Log("Start: " + startPos);
             //Debug.Log("Target: " + targetGroundPos);
-            if (Vector3.Distance(startPos, targetGroundPos) <= 100f)
+            if (Vector3.Distance(startPos, targetGroundPos) <= 500f)
             {
                 gameObject.SetActive(true);                
                 StartCoroutine(SeagullRoutine(startPos, targetGroundPos));
@@ -68,11 +71,14 @@ public class Seagull : MonoBehaviour
                 yield return null;
             }
         }
-        Debug.Log("Huyendo");
-        transform.position = Vector3.MoveTowards(transform.position, startPos, config.flightSpeed * 10f * Time.deltaTime);
+        while (Vector3.Distance(transform.position, startPos) > 0.01f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position,startPos,config.flightSpeed * Time.deltaTime * 2);
+            yield return null;
+        }
+        Debug.Log("Huido");
         gameObject.SetActive(false);
-        yield return null;        
-        
+
     }
     IEnumerator WaitInterruptible(float time)
     {
@@ -81,8 +87,11 @@ public class Seagull : MonoBehaviour
         while (t < time)
         {
             if (isScared)
+            {
+                int i = Random.Range(0, audioClips.Length);
+                audioSource.PlayOneShot(audioClips[i]);
                 yield break; // salir inmediatamente
-
+            }
             t += Time.deltaTime;
             yield return null;
         }

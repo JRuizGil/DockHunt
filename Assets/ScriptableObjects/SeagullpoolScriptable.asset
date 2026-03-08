@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SeagullpoolScriptable
   m_EditorClassIdentifier: 
   spawnInterval: 0.3
-  flightSpeed: 100
+  flightSpeed: 20
   waitTime: 10

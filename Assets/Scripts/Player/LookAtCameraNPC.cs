@@ -1,18 +1,16 @@
 using UnityEngine;
 
-public class LookAtCamera : MonoBehaviour
+public class LookAtCameraNPC : MonoBehaviour
 {
     private SpriteRenderer sprite;
     private Transform player;
     private float rotationSpeed = 5f;
-
     private Vector3 lastPosition;
 
     void Start()
     {
         if (sprite == null) sprite = GetComponent<SpriteRenderer>();
         if (player == null) player = transform;
-
         lastPosition = player.position;
     }
 

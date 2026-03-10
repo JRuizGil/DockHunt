@@ -101,7 +101,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 8
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -154,12 +154,12 @@ NavMeshAgent:
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
+  m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 1
-  m_AutoRepath: 1
+  m_AutoRepath: 0
   m_Height: 0.694337
   m_BaseOffset: 0.3471685
-  m_WalkableMask: 1
+  m_WalkableMask: 2
   m_ObstacleAvoidanceType: 4
 --- !u!114 &104360882343683656
 MonoBehaviour:

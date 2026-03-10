@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody rb;
     private bool isController = false;
+    private float lookInfluence = 0.35f;
 
     [SerializeField] private float mSpeed;
     [SerializeField] private float rSpeed;
@@ -76,14 +77,12 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Walk()
     {
-        Vector3 move = (transform.forward * mMove.y + transform.right * mMove.x) * mSpeed * Time.fixedDeltaTime;
+        Vector3 move = new Vector3(mMove.x, 0f, mMove.y) * mSpeed * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + move);
-        
-        
+
     }
     public void Rotate()
     {
-
         if (isController)
         {
             

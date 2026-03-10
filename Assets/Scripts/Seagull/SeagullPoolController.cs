@@ -27,12 +27,12 @@ public class SpawnPoolController : MonoBehaviour
     }
     private IEnumerator SpawnManager()
     {
-        //take the first disabled seagull from the pool, and
+        //take the first disabled seagull from the pool, and activate it, and do the routine.
         while (true)
         {
             Seagull availableSeagull = pool.Find(s => !s.gameObject.activeInHierarchy);
             availableSeagull.gameObject.SetActive(true);
-            spawnTransform = new Vector3(Random.Range(20, -20), Random.Range(500f,25f), Random.Range(0, -35));
+            spawnTransform = new Vector3(Random.Range(100, -100), Random.Range(500f,35f), Random.Range(0, -35));
             availableSeagull.ActivateSeagull(spawnTransform);
             yield return new WaitForSeconds(config.spawnInterval);
         }                

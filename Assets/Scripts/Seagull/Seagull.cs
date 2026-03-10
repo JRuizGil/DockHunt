@@ -25,6 +25,7 @@ public class Seagull : MonoBehaviour
             isScared=true;
         }
     }
+    #region Activate seagull and call it
     public void ActivateSeagull(Vector3 startPos)
     {
         this.spawnPoint = startPos;
@@ -44,7 +45,8 @@ public class Seagull : MonoBehaviour
             }
         }
     }
-
+    #endregion
+    #region Corutina de la gaviota apareciendo, comiendo, y huyendo.
     private IEnumerator SeagullRoutine(Vector3 startPos,Vector3 targetGroundPos)
     {
         Debug.Log("inicia la corutina de la gaviota");
@@ -80,6 +82,8 @@ public class Seagull : MonoBehaviour
         gameObject.SetActive(false);
 
     }
+    #endregion
+    #region funcion para poder interrumpir a la gaviota con ataque
     IEnumerator WaitInterruptible(float time)
     {
         float t = 0f;
@@ -96,4 +100,5 @@ public class Seagull : MonoBehaviour
             yield return null;
         }
     }
+    #endregion
 }

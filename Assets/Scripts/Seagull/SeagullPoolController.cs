@@ -7,7 +7,7 @@ public class SpawnPoolController : MonoBehaviour
 {
     public SeagullPoolScriptable config;
     public GameObject seagullPrefab;
-    public int poolSize = 1000;
+    public int poolSize = 100;
     public Vector3 spawnTransform;
     public Vector3 targetGroundPos;
     private List<Seagull> pool = new List<Seagull>();
@@ -32,7 +32,7 @@ public class SpawnPoolController : MonoBehaviour
         {
             Seagull availableSeagull = pool.Find(s => !s.gameObject.activeInHierarchy);
             availableSeagull.gameObject.SetActive(true);
-            spawnTransform = new Vector3(Random.Range(70, -70), Random.Range(100,35f), Random.Range(0, -35));
+            spawnTransform = new Vector3(Random.Range(70, -70), Random.Range(70,35f), Random.Range(0, -35));
             availableSeagull.ActivateSeagull(spawnTransform);
             yield return new WaitForSeconds(config.spawnInterval);
         }                

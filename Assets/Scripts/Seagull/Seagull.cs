@@ -45,7 +45,7 @@ public class Seagull : MonoBehaviour
         }
     }
     #endregion
-    #region Corutina de la gaviota apareciendo, comiendo, y huyendo.
+    #region Seagull appears, eats and flees corutine
     private IEnumerator SeagullRoutine(Vector3 startPos,Vector3 targetGroundPos)
     {
         Debug.Log("inicia la corutina de la gaviota");

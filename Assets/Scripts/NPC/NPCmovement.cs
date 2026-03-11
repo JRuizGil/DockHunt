@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class NPCmovement : MonoBehaviour
 {
+    public NpcControllerScriptable config;
     public List<Transform> wayPoint;
     NavMeshAgent agent;
 

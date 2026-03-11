@@ -43,7 +43,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Inspector
   m_RootView: {fileID: 5}
   m_MinSize: {x: 875, y: 382}
   m_MaxSize: {x: 10000, y: 10000}
@@ -194,7 +194,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 77
+  controlID: 65
   draggingID: 0
 --- !u!114 &9
 MonoBehaviour:
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 78
+  controlID: 66
   draggingID: 0
 --- !u!114 &10
 MonoBehaviour:
@@ -246,7 +246,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 79
+  controlID: 67
   draggingID: 0
 --- !u!114 &11
 MonoBehaviour:
@@ -348,8 +348,8 @@ MonoBehaviour:
     y: 0
     width: 402
     height: 933
-  m_MinSize: {x: 276, y: 76}
-  m_MaxSize: {x: 4001, y: 4026}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 22}
   m_Panes:
   - {fileID: 22}
@@ -495,23 +495,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: d6cf0000
-      m_LastClickedID: 53206
-      m_ExpandedIDs: 4c28fdffbab6ffff12fbffff48b3000094b4000080b60000c0cd00002cce000098cf0000b0cf0000f6cf000096d1000030d30000
+      m_SelectedIDs: b0b20000
+      m_LastClickedID: 45744
+      m_ExpandedIDs: 12fbffffb0b20000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: "NPCNi\xF1o"
-        m_OriginalName: "NPCNi\xF1o"
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -186292
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_TrimLeadingAndTrailingWhitespace: 0
         m_ClientGUIView: {fileID: 11}
@@ -1163,13 +1163,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 1
   m_Rotation:
-    m_Target: {x: 0.2087431, y: -0.02498127, z: 0.0051815403, w: 0.9778666}
+    m_Target: {x: 0.12893307, y: -0.026805812, z: 0.0033372238, w: 0.9915103}
     speed: 2
-    m_Value: {x: 0.2086964, y: -0.024975682, z: 0.0051803812, w: 0.97764784}
+    m_Value: {x: 0.12890433, y: -0.026799835, z: 0.0033364797, w: 0.9912892}
   m_Size:
-    m_Target: 9.657005
+    m_Target: 12.034387
     speed: 2
-    m_Value: 9.657005
+    m_Value: 12.034387
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1339,7 +1339,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Materials/Sprites/Animators
+    - Assets/Scripts/NPC
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1349,16 +1349,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Materials/Sprites/Animators
+  - Assets/Scripts/NPC
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\zanah\Desktop\DockHunt
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 4ca70200
-    m_LastClickedID: 173900
-    m_ExpandedIDs: 0000000092c100008cc300009ac3000048a7020000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 69}
+    m_SelectedIDs: 70c30000
+    m_LastClickedID: 50032
+    m_ExpandedIDs: 0000000026c1000014c3000022c300005ac3000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1387,7 +1387,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000092c10000
+    m_ExpandedIDs: 0000000026c10000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

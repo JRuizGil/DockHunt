@@ -12,10 +12,14 @@ public class PlayerAttack : MonoBehaviour
     public MeshRenderer AttackRenderer;
     private Material mat;
     bool attacking = false;
+    private AudioSource clip;
     private void Start()
     {
-        AttackCollider = GetComponentInChildren<SphereCollider>();
-        AttackRenderer = GetComponentInChildren<MeshRenderer>();        
+        AttackCollider = GetComponentInChildren<SphereCollider>(); 
+        clip = GetComponent<AudioSource>();
+        var m =AttackRangeObject.GetComponent<MeshRenderer>();
+        mat = m.material;
+        mat.color = new Color(0f, 1f, 0f, 0.3f);
         //desactivo el collider al inicio
         AttackCollider.enabled = false;
     }
@@ -32,10 +36,11 @@ public class PlayerAttack : MonoBehaviour
     {
         attacking = true;
         AttackCollider.enabled = true;
-        //mat.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
+        clip.Play();
+        mat.color = new Color(1f, 0f, 0f, 0.3f);        
+        yield return new WaitForSeconds(0.2f);
         AttackCollider.enabled = false;
-        //mat.color = Color.green;
+        mat.color = new Color(0f, 1f, 0f, 0.3f);
         attacking = false;
     }
 }

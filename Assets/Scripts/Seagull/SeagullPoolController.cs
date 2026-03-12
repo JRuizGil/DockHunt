@@ -31,8 +31,13 @@ public class SpawnPoolController : MonoBehaviour
         while (true)
         {
             Seagull availableSeagull = pool.Find(s => !s.gameObject.activeInHierarchy);
+            if (availableSeagull == null)
+            {
+                yield return null;
+                continue;
+            }
             availableSeagull.gameObject.SetActive(true);
-            spawnTransform = new Vector3(Random.Range(70, -70), Random.Range(70,35f), Random.Range(0, -35));
+            spawnTransform = new Vector3(Random.Range(-70f, 70f), Random.Range(35f,70f), Random.Range(-35f, 0f));
             availableSeagull.ActivateSeagull(spawnTransform);
             yield return new WaitForSeconds(config.spawnInterval);
         }                

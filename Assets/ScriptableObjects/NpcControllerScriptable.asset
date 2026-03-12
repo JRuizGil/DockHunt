@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a687881344dac564695a61b549544034, type: 3}
+  m_Name: NpcControllerScriptable
+  m_EditorClassIdentifier: 
+  spawnInterval: 2
+  poolSize: 50
+  LSpawnPos: {x: 0, y: 0, z: 0}
+  RSpawnPos: {x: 0, y: 0, z: 0}
+  NPCs:
+  - {fileID: 431083798092713794, guid: e6a07ea3daeb99e4a891702a73bdc7ed, type: 3}
+  - {fileID: 8698934444440729383, guid: 77830d6321f83c649a14879cced668ff, type: 3}
+  - {fileID: 6851569384365704445, guid: 4ee0679757ac90a4c8050b93641cd9b2, type: 3}

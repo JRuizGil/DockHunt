@@ -6,7 +6,9 @@ public class NpcPoolController : MonoBehaviour
 {
     public NpcControllerScriptable config;
     public List<NPCmovement> pool = new List<NPCmovement>();
-
+    public Vector3 RSpawn;
+    public Vector3 LSpawn;
+    public bool PointHour;
     private void Start()
     {
         //instantiate al the npcs and disble
@@ -26,11 +28,33 @@ public class NpcPoolController : MonoBehaviour
         //take the first disabled npc from the pool, and activate it, and do the routine.
         while (true)
         {
-            NPCmovement availableNPC = pool.Find(n=> !n.gameObject.activeInHierarchy);
+            NPCmovement availableNPC = pool.Find(n => !n.gameObject.activeInHierarchy);
+            if (availableNPC == null)
+            {
+                yield return null;
+                continue;
+            }
+
+            Vector3 spawnTransformL = new Vector3(LSpawn.x, LSpawn.y, LSpawn.z + Random.Range(-10, 10));
+            Vector3 spawnTransformR = new Vector3(RSpawn.x, RSpawn.y, RSpawn.z + Random.Range(-10, 10));
+
+            bool spawnLeft = Random.value < 0.5f;
+
+            Vector3 spawnPosition = spawnLeft ? spawnTransformL : spawnTransformR;
+            Vector3 waypointPos = spawnLeft ? spawnTransformR : spawnTransformL;
+
+            availableNPC.transform.position = spawnPosition;
+            availableNPC.wayPoint = waypointPos; 
             availableNPC.gameObject.SetActive(true);
-            Vector3 spawnTransform = new Vector3(Random.Range(70, -70), Random.Range(70, 35f), Random.Range(0, -35));
-            //availableNPC.ActivateSeagull(spawnTransform);
-            yield return new WaitForSeconds(config.spawnInterval);
+            if (PointHour)
+            {
+                yield return new WaitForSeconds(0.1f);
+
+            }
+            else
+            {
+                yield return new WaitForSeconds(config.spawnInterval);
+            }
         }
     }
 }

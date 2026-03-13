@@ -4,7 +4,7 @@ public class LookAtCamera : MonoBehaviour
 {
     private SpriteRenderer sprite;
     private Transform player;
-    private float rotationSpeed = 5f;
+    public float rotationSpeed = 5f;
 
     private Vector3 lastPosition;
 
@@ -20,7 +20,7 @@ public class LookAtCamera : MonoBehaviour
     {
         Camera cam = Camera.main;
 
-        // Posición de la cámara pero con la misma altura que el objeto
+        // Posiciï¿½n de la cï¿½mara pero con la misma altura que el objeto
         Vector3 targetPosition = cam.transform.position;
         targetPosition.y = transform.position.y;
 
@@ -28,7 +28,7 @@ public class LookAtCamera : MonoBehaviour
 
         transform.rotation = Quaternion.Slerp(transform.rotation,targetRotation,rotationSpeed * Time.deltaTime);
 
-        // Flip según movimiento
+        // Flip segï¿½n movimiento
         Vector3 delta = player.position - lastPosition;
 
         if (delta.x > 0.01f)

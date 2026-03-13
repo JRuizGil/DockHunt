@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private InputAction Look;
     private InputAction Jump;
 
-    private Vector2 mMove;
+    public Vector2 mMove;
     private Vector2 mLook;
 
     private Rigidbody rb;
@@ -21,7 +22,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jSpeed;
     [SerializeField] private float sensitivity = 0.1f;
     [SerializeField] private Camera camera;
-    
+
+    public Animator animator;
+    public float currentSpeed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -52,15 +55,17 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         mMove = Move.ReadValue<Vector2>();
-        mLook = Look.ReadValue<Vector2>();
-        
+        mLook = Look.ReadValue<Vector2>();        
+        animator.SetFloat("currentSpeed", currentSpeed);
         if (Jump.WasPressedThisFrame())
         {
             mJump();
         }
     }
     private void FixedUpdate()
-    {
+    {  
+        currentSpeed = mMove.magnitude * mSpeed;      
+        
         Walk();
         Rotate();
     }
@@ -69,6 +74,8 @@ public class PlayerMovement : MonoBehaviour
         Move = InputSystem.actions.FindAction("Move");
         Look = InputSystem.actions.FindAction("Look");
         Jump = InputSystem.actions.FindAction("Jump");
+        animator = GetComponentInChildren<Animator>();
+        
 
     }
     public void mJump()
@@ -79,7 +86,6 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 move = new Vector3(mMove.x, 0f, mMove.y) * mSpeed * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + move);
-
     }
     public void Rotate()
     {

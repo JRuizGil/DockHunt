@@ -33,11 +33,11 @@ public class Seagull : MonoBehaviour
         NavMeshHit hit;
         int seagullAreaMask = 1 << NavMesh.GetAreaFromName("Seagull");
         //if navmesh hits in a point closer than 20 units, saves and sends the corutine to that position
-        if (NavMesh.SamplePosition(startPos, out hit, 100f, seagullAreaMask))
+        if (NavMesh.SamplePosition(startPos, out hit, 2000f, seagullAreaMask))
         {
             Vector3 targetGroundPos = hit.position;
 
-            if (Vector3.Distance(startPos, targetGroundPos) <= 100f)
+            if (Vector3.Distance(startPos, targetGroundPos) <= 200f)
             {
                 gameObject.SetActive(true);
                 StartCoroutine(SeagullRoutine(startPos, targetGroundPos));
@@ -71,6 +71,7 @@ public class Seagull : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position,startPos,config.flightSpeed * Time.deltaTime);
                 yield return null;
             }
+            gameObject.SetActive(false);
         }
         while (Vector3.Distance(transform.position, startPos) > 0.01f)
         {

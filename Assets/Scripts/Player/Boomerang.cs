@@ -1,8 +1,10 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Boomerang : MonoBehaviour
 {
-    [Header("Elementos principales")]
+    [Header("Elementos propios boomerang")]
     [SerializeField] GameObject boom;
     [SerializeField] Transform boomPos;
     [SerializeField] Transform boomRot;
@@ -13,15 +15,26 @@ public class Boomerang : MonoBehaviour
     private bool isReturning;
     private Vector3 DistPos;
     private BoomerangRotation rotation;
+
+    //Elementos ataque
+    public GameObject AttackRangeObj;
+    public CapsuleCollider AttackCollider;
+    public MeshRenderer AttackRenderer;
+    private bool attacking = false; 
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rotation = boom.GetComponent<BoomerangRotation>();
+        AttackCollider = GetComponentInChildren<CapsuleCollider>();
+        AttackRenderer = GetComponentInChildren<MeshRenderer>();
         rotation.enabled = false;
 
         boom.transform.parent = boomPos;
         boom.transform.localPosition = Vector3.zero;
         boom.transform.localRotation = Quaternion.identity;
+        AttackCollider.enabled = false;
 
     }
 
@@ -57,11 +70,12 @@ public class Boomerang : MonoBehaviour
     }
     void Lanzar()       //Con todo el tema de la distancia
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))                   //MIRAR ESTO SUPER URGENTE (INPUT SYSTEM) MANDO MANDO MANDOOOOO
+        if (Mouse.current.leftButton.wasPressedThisFrame || Gamepad.current != null &&Gamepad.current.buttonWest.wasPressedThisFrame)                   //MIRAR ESTO SUPER URGENTE (INPUT SYSTEM) MANDO MANDO MANDOOOOO
         {
             if (isThrown || isReturning) return;
             {
                 Distance();
+                StartCoroutine(Attack());
             }
         }
     }
@@ -73,5 +87,13 @@ public class Boomerang : MonoBehaviour
             rotation.enabled = true;
             isThrown = true;
         
+    }
+    IEnumerator Attack()
+    {
+        attacking = true;
+        AttackCollider.enabled = true;
+        yield return new WaitForSeconds(0.1f);
+        AttackCollider.enabled = false;
+        attacking = false;
     }
 }

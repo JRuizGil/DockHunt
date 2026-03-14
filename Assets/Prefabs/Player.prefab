@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 290b26044cb892849a31b1c7d42bbdda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationSpeed: 5
 --- !u!95 &3162800471125577746
 Animator:
   serializedVersion: 7
@@ -653,6 +654,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackRangeObject: {fileID: 4784126884897495674}
   AttackCollider: {fileID: 5644853133547313109}
+  mat: {fileID: 0}
+  m: {fileID: 3809651006386695239}
   eraseCooldownValue: 25
   CooldownSlider: {fileID: 2560313123478438505}
   CooldownRegenValue: 0

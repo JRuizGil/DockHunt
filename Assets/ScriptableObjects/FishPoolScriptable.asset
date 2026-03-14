@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 807607b63800cb0469da44c4e8fd7957, type: 3}
   m_Name: FishPoolScriptable
   m_EditorClassIdentifier: 
-  PosMax: {x: 100, y: -0.02, z: -10}
-  PosMin: {x: -100, y: -0.02, z: -21}
-  lifepoints: 500
+  PosMax: {x: 50, y: -0.02, z: -10}
+  PosMin: {x: -50, y: -0.02, z: -21}
+  lifepoints: 200
   FishPrefab: {fileID: 2315818115311751786, guid: 7ac44df6beb157c40abec70e58a7bb07, type: 3}
-  poolSize: 10
+  poolSize: 5
   spawnAreaMargin: 10

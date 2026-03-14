@@ -9,6 +9,11 @@ public class NpcPoolController : MonoBehaviour
     public Vector3 RSpawn;
     public Vector3 LSpawn;
     public bool PointHour;
+
+    private void OnEnable()
+    {
+        StartCoroutine(ActivateMore());
+    }
     private void Start()
     {
         //instantiate al the npcs and disble
@@ -56,5 +61,11 @@ public class NpcPoolController : MonoBehaviour
                 yield return new WaitForSeconds(config.spawnInterval);
             }
         }
+    }
+    private IEnumerator ActivateMore()
+    {
+        PointHour = true;
+        yield return new WaitForSeconds(5f);
+        PointHour = false;
     }
 }

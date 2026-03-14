@@ -10,7 +10,8 @@ public class PlayerAttack : MonoBehaviour
 
     public GameObject AttackRangeObject;
     public SphereCollider AttackCollider;
-    private Material mat;
+    public Material mat;
+    public MeshRenderer m;
     bool attacking = false;
     private AudioSource clip;
 
@@ -26,7 +27,6 @@ public class PlayerAttack : MonoBehaviour
     {
         AttackCollider = GetComponentInChildren<SphereCollider>(); 
         clip = GetComponent<AudioSource>();
-        var m =AttackRangeObject.GetComponent<MeshRenderer>();
         mat = m.material;
         mat.color = new Color(0f, 1f, 0f, 0.3f);
         //desactivo el collider al inicio

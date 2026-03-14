@@ -10,7 +10,7 @@ public class Fish : MonoBehaviour
     public float currentSeagullDamage;
     public float currentLife;
     public bool hasSeagulls;
-    private float[] lifeThresholds = { 100f, 250f, 400f };
+    private float[] lifeThresholds = { 50f, 100f, 150f };
 
     public void Start()
     {

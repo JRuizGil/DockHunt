@@ -10,7 +10,7 @@ public class SpawnPoolController : MonoBehaviour
     public int poolSize = 100;
     public Vector3 spawnTransform;
     public Vector3 targetGroundPos;
-    private List<Seagull> pool = new List<Seagull>();
+    public List<Seagull> pool = new List<Seagull>();
 
     private void Start()
     {

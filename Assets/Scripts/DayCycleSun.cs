@@ -24,6 +24,10 @@ public class DayCycleSun : MonoBehaviour
         sun = GetComponent<Light>();
         startRotation = transform.rotation;
     }
+    void OnEnable()
+    {
+        transform.rotation = startRotation;
+    }
 
     void Update()
     {
@@ -61,10 +65,7 @@ public class DayCycleSun : MonoBehaviour
     public void playtime()
     {
         timer = 0f;
-
-        // reset rotación del sol
         transform.rotation = startRotation;
-
         play = true;
     }
 }

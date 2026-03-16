@@ -6,7 +6,7 @@ public class FishPoolController : MonoBehaviour
     public FishPoolScriptable config;
     public List<Fish> pool = new List<Fish>();
     public float currentday = 1;
-    public float poolsize = 3;
+    public float poolsize = 5;
     private void Awake()
     {
         poolsize = config.poolSize;
@@ -63,7 +63,7 @@ public class FishPoolController : MonoBehaviour
 
         // volver a generarlos
         SpawnFish();
-        poolsize =+ 1;
+        poolsize = poolsize + 3;
 
     }
     

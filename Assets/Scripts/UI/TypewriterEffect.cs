@@ -17,6 +17,8 @@ public class TypewriterEffect : MonoBehaviour
     [Header("Typewritter settings")]
     [SerializeField] private float charactersPerSecond = 20;
     [SerializeField] private float interpunctuationDelay = 0.5f;
+
+    public GameObject Continuebtn;
     private void Awake()
     {
         _textbox = GetComponent<TMP_Text>();
@@ -56,6 +58,8 @@ public class TypewriterEffect : MonoBehaviour
             }
             _currentVisibleCharacterIndex++;
         }
+        Continuebtn.SetActive(true);
+        yield break;
     }
 }
 

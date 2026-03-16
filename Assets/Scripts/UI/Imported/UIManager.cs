@@ -91,8 +91,9 @@ public class UIManager : Singleton<UIManager>
 public static class WindowsIDs
 {
     public static string SettingsUI = "SettingsUI";
-    public static string PopupUI = "PopupUI";
+    public static string PopupUI = "FirstDaysUI";
     public static string MenuUI = "MenuUI";
-    public static string LevelsUI = "LevelsUI";
-    public static string CompletedUI = "CompletedUI";
+    public static string LevelsUI = "PopupUI";
+    public static string rdDayUI = "3rdDayUI";
+    public static string ndDayUI = "2ndDayUI";
 }

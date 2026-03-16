@@ -16,5 +16,5 @@ MonoBehaviour:
   PosMin: {x: -50, y: -0.02, z: -21}
   lifepoints: 200
   FishPrefab: {fileID: 2315818115311751786, guid: 7ac44df6beb157c40abec70e58a7bb07, type: 3}
-  poolSize: 5
+  poolSize: 3
   spawnAreaMargin: 10

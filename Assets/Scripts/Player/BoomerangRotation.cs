@@ -6,9 +6,9 @@ public class BoomerangRotation : MonoBehaviour
     public float speedY;
     public float speedZ;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
+    void Awake()
+    {        
+        enabled = false;
     }
 
     // Update is called once per frame

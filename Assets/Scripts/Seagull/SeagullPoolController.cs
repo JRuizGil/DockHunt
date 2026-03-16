@@ -7,23 +7,29 @@ public class SpawnPoolController : MonoBehaviour
 {
     public SeagullPoolScriptable config;
     public GameObject seagullPrefab;
-    public int poolSize = 100;
+    public int poolSize = 80;
+    public float spawnInterval;
     public Vector3 spawnTransform;
     public Vector3 targetGroundPos;
     public List<Seagull> pool = new List<Seagull>();
+    private Coroutine spawnRoutine;
 
-    private void Start()
+    private void Awake()
     {
-        //instantiate al the seagulls and disble
-        for (int i = 0; i < poolSize; i++)
-        {
-            GameObject sgInstance = Instantiate(seagullPrefab, transform);
-            Seagull s = sgInstance.GetComponent<Seagull>();
-            s.config = config;
-            sgInstance.SetActive(false);
-            pool.Add(s);
-        }
-        StartCoroutine(SpawnManager());
+        spawnInterval = config.spawnInterval;
+    }
+    void OnEnable()
+    {
+        Restart();
+    }
+    void OnDisable()
+    {
+        if (spawnRoutine != null)
+            StopCoroutine(spawnRoutine);
+    }
+    private void Start()
+    { 
+        spawnRoutine = StartCoroutine(SpawnManager());
     }
     private IEnumerator SpawnManager()
     {
@@ -37,9 +43,35 @@ public class SpawnPoolController : MonoBehaviour
                 continue;
             }
             availableSeagull.gameObject.SetActive(true);
-            spawnTransform = new Vector3(Random.Range(-130f, 130f), Random.Range(80f,80f), Random.Range(-25f, 0f));
+            spawnTransform = new Vector3(Random.Range(-100f, 100f), Random.Range(80f,80f), Random.Range(-25f, 0f));
             availableSeagull.ActivateSeagull(spawnTransform);
-            yield return new WaitForSeconds(config.spawnInterval);
+            yield return new WaitForSeconds(spawnInterval);
         }                
+    }
+    public void Restart()
+    {
+        // parar spawn
+        if (spawnRoutine != null)
+            StopCoroutine(spawnRoutine);
+
+        // desactivar todas las gaviotas
+        foreach (Seagull s in pool)
+        {
+            if (s.gameObject.activeSelf)
+                s.gameObject.SetActive(false);
+        }
+        // reset variables si hace falta
+        spawnTransform = Vector3.zero;
+        for (int i = 0; i < poolSize; i++)
+        {
+            GameObject sgInstance = Instantiate(seagullPrefab, transform);
+            Seagull s = sgInstance.GetComponent<Seagull>();
+            s.config = config;
+            sgInstance.SetActive(false);
+            pool.Add(s);
+        }
+        poolSize += 40;
+        // reiniciar spawn
+        spawnRoutine = StartCoroutine(SpawnManager());
     }
 }

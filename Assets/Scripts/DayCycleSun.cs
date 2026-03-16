@@ -1,22 +1,34 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DayCycleSun : MonoBehaviour
 {
-    public float cycleDuration = 120f;
+    public float cycleDuration = 90f;
 
-    public float warmTemp = 2000f;   // amanecer / atardecer
-    public float coldTemp = 6500f;   // mediodía
+    public float warmTemp = 2000f;
+    public float coldTemp = 6500f;
+
+    public UnityEvent onCycle1Finished;
+    public UnityEvent onCycle2Finished;
 
     private float timer;
     private Light sun;
+    public float day = 1;
+
+    private bool play = true;
+
+    private Quaternion startRotation;
 
     void Start()
     {
         sun = GetComponent<Light>();
+        startRotation = transform.rotation;
     }
 
     void Update()
     {
+        if (!play) return;
+
         timer += Time.deltaTime;
 
         float t = timer / cycleDuration;
@@ -24,15 +36,35 @@ public class DayCycleSun : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(angle, -50f, 0f);
 
-        // distancia al mediodía (90°)
         float dist = Mathf.Abs(angle - 90f) / 90f;
-
-        // temperatura
         sun.colorTemperature = Mathf.Lerp(coldTemp, warmTemp, dist);
 
-        if (timer >= cycleDuration)
+        if (timer >= cycleDuration && day == 2)
         {
-            timer = 0f;
+            onCycle2Finished?.Invoke();
+            stoptime();
         }
+
+        if (timer >= cycleDuration && day == 1)
+        {
+            onCycle1Finished?.Invoke();
+            stoptime();
+        }
+    }
+
+    public void stoptime()
+    {
+        day++;
+        play = false;
+    }
+
+    public void playtime()
+    {
+        timer = 0f;
+
+        // reset rotación del sol
+        transform.rotation = startRotation;
+
+        play = true;
     }
 }

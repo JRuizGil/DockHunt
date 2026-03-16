@@ -7,16 +7,27 @@ public class BoatMovement : MonoBehaviour
     public float distance = 300f;
     private float MoveTime = 10f;
     private float CurrentMoveTime = 0;
-    void Start()
+    public bool moving;
+
+    private void Awake()
     {
         StartingPos = transform.position;
         EndPos = transform.position + Vector3.left * distance;
+        moving = true;
+    }
+    void Start()
+    {        
+        
     }
     void Update()
     {
-        CurrentMoveTime += Time.deltaTime;
-        float t = CurrentMoveTime / MoveTime;
-        t = Mathf.SmoothStep(0f, 1f, t);
-        transform.position = Vector3.Lerp(StartingPos, EndPos, t);
+        if (moving)
+        {
+            CurrentMoveTime += Time.deltaTime;
+            float t = CurrentMoveTime / MoveTime;
+            t = Mathf.SmoothStep(0f, 1f, t);
+            transform.position = Vector3.Lerp(StartingPos, EndPos, t);
+        }
+        
     }
 }

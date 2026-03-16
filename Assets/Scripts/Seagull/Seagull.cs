@@ -12,6 +12,7 @@ public class Seagull : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip[] audioClips;
     public Animator animator;
+    private Coroutine routine;
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();    
@@ -19,6 +20,10 @@ public class Seagull : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         animator.SetBool("isFalling", true);
         agent.enabled = false;
+    }
+    void OnEnable()
+    {
+        isScared = false;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -35,15 +40,17 @@ public class Seagull : MonoBehaviour
         transform.position = startPos;
         NavMeshHit hit;
         int seagullAreaMask = 1 << NavMesh.GetAreaFromName("Seagull");
-        //if navmesh hits in a point closer than 20 units, saves and sends the corutine to that position
-        if (NavMesh.SamplePosition(startPos, out hit, 2000f, seagullAreaMask))
+        //if navmesh hits in a point closer than 5000 units, saves and sends the corutine to that position
+        if (NavMesh.SamplePosition(startPos, out hit, 500f, seagullAreaMask))
         {
             Vector3 targetGroundPos = hit.position;
 
-            if (Vector3.Distance(startPos, targetGroundPos) <= 200f)
+            if (Vector3.Distance(startPos, targetGroundPos) <= 500f)
             {
                 gameObject.SetActive(true);
-                StartCoroutine(SeagullRoutine(startPos, targetGroundPos));
+                if (routine != null) StopCoroutine(routine);
+                routine = StartCoroutine(SeagullRoutine(startPos, targetGroundPos));
+
             }
         }
     }
@@ -105,7 +112,8 @@ public class Seagull : MonoBehaviour
         }
         Debug.Log("Huido");
         gameObject.SetActive(false);
-        if(animator.GetBool("isFleeing") == true)
+        isScared = false;
+        if (animator.GetBool("isFleeing") == true)
         {
             animator.SetBool("isFleeing", false);
             animator.SetBool("isFalling", true);

@@ -16,25 +16,24 @@ public class Boomerang : MonoBehaviour
     private Vector3 DistPos;
     private BoomerangRotation rotation;
 
-    //Elementos ataque
-    public GameObject AttackRangeObj;
-    public CapsuleCollider AttackCollider;
-    public MeshRenderer AttackRenderer;
+    public CapsuleCollider boomCollider;
+    public MeshRenderer boomRenderer;
     private bool attacking = false; 
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
         rotation = boom.GetComponent<BoomerangRotation>();
-        AttackCollider = GetComponentInChildren<CapsuleCollider>();
-        AttackRenderer = GetComponentInChildren<MeshRenderer>();
+        boomCollider = GetComponent<CapsuleCollider>();
+        boomRenderer = GetComponent<MeshRenderer>();
         rotation.enabled = false;
 
         boom.transform.parent = boomPos;
         boom.transform.localPosition = Vector3.zero;
         boom.transform.localRotation = Quaternion.identity;
-        AttackCollider.enabled = false;
+        boomCollider.enabled = false;
 
     }
 
@@ -91,9 +90,9 @@ public class Boomerang : MonoBehaviour
     IEnumerator Attack()
     {
         attacking = true;
-        AttackCollider.enabled = true;
+        boomCollider.enabled = true;
         yield return new WaitForSeconds(0.1f);
-        AttackCollider.enabled = false;
+        boomCollider.enabled = false;
         attacking = false;
     }
 }
